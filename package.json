@@ -1,0 +1,26 @@
+{
+  "name": "demo-shopify-function-metafield-config",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "license": "Apache-2.0",
+  "description": "Synthetic Shopify discount Function with merchant-editable JSON metafield rules",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "test": "node --test test/run.test.js test/config.test.js test/contract.test.js test/payload.test.js",
+    "demo": "node scripts/demo.js",
+    "validate": "node scripts/validate.js",
+    "metafield:dry-run": "node scripts/metafield-dry-run.js",
+    "build": "shopify app function build --path extensions/market-discount",
+    "test:wasm": "node --test test/wasm.test.js",
+    "check": "npm test && npm run build && npm run test:wasm"
+  },
+  "devDependencies": {
+    "@shopify/cli": "4.8.5",
+    "@shopify/shopify_function": "2.0.1",
+    "ajv": "8.17.1",
+    "graphql": "16.11.0"
+  }
+}

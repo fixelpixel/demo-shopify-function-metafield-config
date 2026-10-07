@@ -1,0 +1,8 @@
+node_modules/
+extensions/market-discount/dist/
+extensions/market-discount/generated/
+.shopify/
+out/
+.DS_Store
+.env*
+*.log

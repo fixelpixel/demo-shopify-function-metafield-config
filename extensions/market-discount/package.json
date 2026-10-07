@@ -1,0 +1,17 @@
+{
+  "name": "demo-market-discount",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "src/index.js",
+  "dependencies": {},
+  "codegen": {
+    "schema": "schema.graphql",
+    "documents": "src/run.graphql",
+    "generates": {
+      "generated/api.ts": {
+        "plugins": ["typescript", "typescript-operations"]
+      }
+    }
+  }
+}

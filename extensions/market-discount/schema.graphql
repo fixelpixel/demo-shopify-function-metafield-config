@@ -1,0 +1,30 @@
+schema { query: Input mutation: MutationRoot }
+scalar JSON
+scalar Decimal
+type Input { cart: Cart! discount: Discount! localization: Localization! }
+type Discount { discountClasses: [DiscountClass!]! metafield(namespace: String, key: String!): Metafield }
+enum DiscountClass { PRODUCT ORDER SHIPPING }
+type Metafield { jsonValue: JSON! }
+type Localization { market: Market! }
+type Market { id: ID! }
+type Cart { lines: [CartLine!]! }
+type CartLine { id: ID! quantity: Int! cost: CartLineCost! merchandise: Merchandise! }
+type CartLineCost { totalAmount: MoneyV2! }
+type MoneyV2 { amount: Decimal! currencyCode: CurrencyCode! }
+enum CurrencyCode { EUR USD }
+union Merchandise = ProductVariant | CustomProduct
+type CustomProduct { title: String! }
+type ProductVariant { product: Product! }
+type Product { hasTags(tags: [String!]!): [HasTagResponse!]! }
+type HasTagResponse { tag: String! hasTag: Boolean! }
+type MutationRoot { cartLinesDiscountsGenerateRun(result: CartLinesDiscountsGenerateRunResult!): Void }
+scalar Void
+input CartLinesDiscountsGenerateRunResult { operations: [Operation!]! }
+input Operation { productDiscountsAdd: ProductDiscountsAddOperation }
+input ProductDiscountsAddOperation { candidates: [ProductDiscountCandidate!]! selectionStrategy: ProductDiscountSelectionStrategy! }
+enum ProductDiscountSelectionStrategy { FIRST MAXIMUM ALL }
+input ProductDiscountCandidate { message: String targets: [ProductDiscountCandidateTarget!]! value: ProductDiscountCandidateValue! }
+input ProductDiscountCandidateTarget { cartLine: CartLineTarget }
+input CartLineTarget { id: ID! quantity: Int }
+input ProductDiscountCandidateValue { percentage: Percentage }
+input Percentage { value: Decimal! }

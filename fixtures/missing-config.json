@@ -1,0 +1,48 @@
+{
+  "name": "missing-config",
+  "input": {
+    "discount": {
+      "discountClasses": [
+        "PRODUCT"
+      ],
+      "metafield": null
+    },
+    "localization": {
+      "market": {
+        "id": "gid://shopify/Market/900001"
+      }
+    },
+    "cart": {
+      "lines": [
+        {
+          "id": "gid://shopify/CartLine/900101",
+          "quantity": 1,
+          "cost": {
+            "totalAmount": {
+              "amount": "100.00",
+              "currencyCode": "EUR"
+            }
+          },
+          "merchandise": {
+            "__typename": "ProductVariant",
+            "product": {
+              "hasTags": [
+                {
+                  "tag": "demo-no-promo",
+                  "hasTag": false
+                },
+                {
+                  "tag": "demo-clearance",
+                  "hasTag": false
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  },
+  "expected": {
+    "operations": []
+  }
+}

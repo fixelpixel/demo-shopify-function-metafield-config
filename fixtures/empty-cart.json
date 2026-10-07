@@ -1,0 +1,57 @@
+{
+  "name": "empty-cart",
+  "input": {
+    "discount": {
+      "discountClasses": [
+        "PRODUCT"
+      ],
+      "metafield": {
+        "jsonValue": {
+          "version": 1,
+          "enabled": true,
+          "excludedTags": [
+            "demo-no-promo",
+            "demo-clearance"
+          ],
+          "markets": [
+            {
+              "marketId": "gid://shopify/Market/900001",
+              "currencyCode": "EUR",
+              "tiers": [
+                {
+                  "minimumSubtotal": "100.00",
+                  "percentage": 10
+                },
+                {
+                  "minimumSubtotal": "200.00",
+                  "percentage": 15
+                }
+              ]
+            },
+            {
+              "marketId": "gid://shopify/Market/900002",
+              "currencyCode": "USD",
+              "tiers": [
+                {
+                  "minimumSubtotal": "150.00",
+                  "percentage": 12
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "localization": {
+      "market": {
+        "id": "gid://shopify/Market/900001"
+      }
+    },
+    "cart": {
+      "lines": []
+    }
+  },
+  "expected": {
+    "operations": []
+  }
+}

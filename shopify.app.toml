@@ -1,0 +1,13 @@
+client_id = "00000000000000000000000000000000"
+name = "Synthetic market discount demo"
+application_url = "https://demo-store.example"
+embedded = false
+
+[access_scopes]
+scopes = ""
+
+[auth]
+redirect_urls = ["https://demo-store.example/auth/callback"]
+
+[webhooks]
+api_version = "2026-10"

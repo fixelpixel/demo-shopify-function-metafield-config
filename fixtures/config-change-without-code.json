@@ -1,0 +1,107 @@
+{
+  "name": "config-change-without-code",
+  "input": {
+    "discount": {
+      "discountClasses": [
+        "PRODUCT"
+      ],
+      "metafield": {
+        "jsonValue": {
+          "version": 1,
+          "enabled": true,
+          "excludedTags": [
+            "demo-no-promo",
+            "demo-clearance"
+          ],
+          "markets": [
+            {
+              "marketId": "gid://shopify/Market/900001",
+              "currencyCode": "EUR",
+              "tiers": [
+                {
+                  "minimumSubtotal": "100.00",
+                  "percentage": 11
+                },
+                {
+                  "minimumSubtotal": "200.00",
+                  "percentage": 15
+                }
+              ]
+            },
+            {
+              "marketId": "gid://shopify/Market/900002",
+              "currencyCode": "USD",
+              "tiers": [
+                {
+                  "minimumSubtotal": "150.00",
+                  "percentage": 12
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "localization": {
+      "market": {
+        "id": "gid://shopify/Market/900001"
+      }
+    },
+    "cart": {
+      "lines": [
+        {
+          "id": "gid://shopify/CartLine/900101",
+          "quantity": 1,
+          "cost": {
+            "totalAmount": {
+              "amount": "100.00",
+              "currencyCode": "EUR"
+            }
+          },
+          "merchandise": {
+            "__typename": "ProductVariant",
+            "product": {
+              "hasTags": [
+                {
+                  "tag": "demo-no-promo",
+                  "hasTag": false
+                },
+                {
+                  "tag": "demo-clearance",
+                  "hasTag": false
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  },
+  "expected": {
+    "operations": [
+      {
+        "productDiscountsAdd": {
+          "candidates": [
+            {
+              "message": "Demo market discount: 11%",
+              "targets": [
+                {
+                  "cartLine": {
+                    "id": "gid://shopify/CartLine/900101",
+                    "quantity": 1
+                  }
+                }
+              ],
+              "value": {
+                "percentage": {
+                  "value": "11"
+                }
+              }
+            }
+          ],
+          "selectionStrategy": "FIRST"
+        }
+      }
+    ]
+  }
+}

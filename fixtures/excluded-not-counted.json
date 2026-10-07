@@ -1,0 +1,108 @@
+{
+  "name": "excluded-not-counted",
+  "input": {
+    "discount": {
+      "discountClasses": [
+        "PRODUCT"
+      ],
+      "metafield": {
+        "jsonValue": {
+          "version": 1,
+          "enabled": true,
+          "excludedTags": [
+            "demo-no-promo",
+            "demo-clearance"
+          ],
+          "markets": [
+            {
+              "marketId": "gid://shopify/Market/900001",
+              "currencyCode": "EUR",
+              "tiers": [
+                {
+                  "minimumSubtotal": "100.00",
+                  "percentage": 10
+                },
+                {
+                  "minimumSubtotal": "200.00",
+                  "percentage": 15
+                }
+              ]
+            },
+            {
+              "marketId": "gid://shopify/Market/900002",
+              "currencyCode": "USD",
+              "tiers": [
+                {
+                  "minimumSubtotal": "150.00",
+                  "percentage": 12
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "localization": {
+      "market": {
+        "id": "gid://shopify/Market/900001"
+      }
+    },
+    "cart": {
+      "lines": [
+        {
+          "id": "gid://shopify/CartLine/900101",
+          "quantity": 1,
+          "cost": {
+            "totalAmount": {
+              "amount": "90.00",
+              "currencyCode": "EUR"
+            }
+          },
+          "merchandise": {
+            "__typename": "ProductVariant",
+            "product": {
+              "hasTags": [
+                {
+                  "tag": "demo-no-promo",
+                  "hasTag": false
+                },
+                {
+                  "tag": "demo-clearance",
+                  "hasTag": false
+                }
+              ]
+            }
+          }
+        },
+        {
+          "id": "gid://shopify/CartLine/900102",
+          "quantity": 1,
+          "cost": {
+            "totalAmount": {
+              "amount": "500.00",
+              "currencyCode": "EUR"
+            }
+          },
+          "merchandise": {
+            "__typename": "ProductVariant",
+            "product": {
+              "hasTags": [
+                {
+                  "tag": "demo-no-promo",
+                  "hasTag": true
+                },
+                {
+                  "tag": "demo-clearance",
+                  "hasTag": false
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  },
+  "expected": {
+    "operations": []
+  }
+}

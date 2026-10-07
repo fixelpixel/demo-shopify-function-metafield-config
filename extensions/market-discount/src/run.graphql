@@ -1,0 +1,26 @@
+query RunInput($excludedTags: [String!] = []) {
+  discount {
+    discountClasses
+    metafield(namespace: "$app:demo-market-discount", key: "rules") {
+      jsonValue
+    }
+  }
+  localization {
+    market { id }
+  }
+  cart {
+    lines {
+      id
+      quantity
+      cost { totalAmount { amount currencyCode } }
+      merchandise {
+        __typename
+        ... on ProductVariant {
+          product {
+            hasTags(tags: $excludedTags) { tag hasTag }
+          }
+        }
+      }
+    }
+  }
+}
